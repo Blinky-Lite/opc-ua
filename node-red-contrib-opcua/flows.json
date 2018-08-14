@@ -1,0 +1,319 @@
+[
+    {
+        "id": "465cfd27.107674",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6ad7c930.1a06b8",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#000000",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "366ed23a.21144e",
+        "type": "OpcUa-Endpoint",
+        "z": "465cfd27.107674",
+        "endpoint": "opc.tcp://localhost:4334/UA/gg-scale-server",
+        "login": false
+    },
+    {
+        "id": "dd11a017.ef182",
+        "type": "debug",
+        "z": "465cfd27.107674",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 870,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "fb56a66d.407518",
+        "type": "OpcUa-Item",
+        "z": "465cfd27.107674",
+        "item": "ns=2;s=weight",
+        "datatype": "Double",
+        "value": "",
+        "name": "gg-scale - weight",
+        "x": 390,
+        "y": 40,
+        "wires": [
+            [
+                "935d0655.a58518"
+            ]
+        ]
+    },
+    {
+        "id": "935d0655.a58518",
+        "type": "OpcUa-Client",
+        "z": "465cfd27.107674",
+        "endpoint": "366ed23a.21144e",
+        "action": "read",
+        "time": "1",
+        "timeUnit": "s",
+        "name": "Test server (read items)",
+        "x": 650,
+        "y": 40,
+        "wires": [
+            [
+                "dd11a017.ef182"
+            ]
+        ]
+    },
+    {
+        "id": "91c96299.0254b",
+        "type": "inject",
+        "z": "465cfd27.107674",
+        "name": "Read",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 190,
+        "y": 40,
+        "wires": [
+            [
+                "fb56a66d.407518"
+            ]
+        ]
+    },
+    {
+        "id": "589e2f40.fb217",
+        "type": "debug",
+        "z": "465cfd27.107674",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 870,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "7be2970e.90adf8",
+        "type": "OpcUa-Item",
+        "z": "465cfd27.107674",
+        "item": "ns=2;s=weight",
+        "datatype": "Double",
+        "value": "",
+        "name": "gg-scale - weight",
+        "x": 390,
+        "y": 100,
+        "wires": [
+            [
+                "7fc7d547.f16f6c"
+            ]
+        ]
+    },
+    {
+        "id": "7fc7d547.f16f6c",
+        "type": "OpcUa-Client",
+        "z": "465cfd27.107674",
+        "endpoint": "366ed23a.21144e",
+        "action": "write",
+        "time": "",
+        "name": "Test server (write items)",
+        "x": 650,
+        "y": 100,
+        "wires": [
+            [
+                "589e2f40.fb217"
+            ]
+        ]
+    },
+    {
+        "id": "65a9914d.f487",
+        "type": "inject",
+        "z": "465cfd27.107674",
+        "name": "Write",
+        "topic": "",
+        "payload": "42",
+        "payloadType": "num",
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "222f3dc6.ca5402"
+            ]
+        ]
+    },
+    {
+        "id": "222f3dc6.ca5402",
+        "type": "function",
+        "z": "465cfd27.107674",
+        "name": "count",
+        "func": "var counter = context.get('counter');\nif (counter == undefined) counter = msg.payload;\ncounter = counter + 1;\ncontext.set('counter', counter);\nmsg.payload = counter;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 230,
+        "y": 100,
+        "wires": [
+            [
+                "7be2970e.90adf8"
+            ]
+        ]
+    },
+    {
+        "id": "8b71018d.22b7c",
+        "type": "inject",
+        "z": "465cfd27.107674",
+        "name": "Subscribe ( Interval 1 sec.)",
+        "topic": "",
+        "payload": "1000",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "2947d38d.a3c27c"
+            ]
+        ]
+    },
+    {
+        "id": "269b4072.d6152",
+        "type": "debug",
+        "z": "465cfd27.107674",
+        "name": "Subscribed values",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 910,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "bc7a69e.c814e98",
+        "type": "OpcUa-Client",
+        "z": "465cfd27.107674",
+        "endpoint": "366ed23a.21144e",
+        "action": "subscribe",
+        "time": "1",
+        "timeUnit": "s",
+        "name": "Test server (subscribe items)",
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "269b4072.d6152"
+            ]
+        ]
+    },
+    {
+        "id": "2947d38d.a3c27c",
+        "type": "OpcUa-Item",
+        "z": "465cfd27.107674",
+        "item": "ns=2;s=weight",
+        "datatype": "Double",
+        "value": "",
+        "name": "gg-scale - weight",
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "bc7a69e.c814e98"
+            ]
+        ]
+    }
+]
